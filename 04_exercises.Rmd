@@ -95,13 +95,100 @@ These exercises will reiterate what you learned in the "Mapping data with R" tut
 
   1. Add the `Starbucks` locations to a world map. Add an aesthetic to the world map that sets the color of the points according to the ownership type. What, if anything, can you deduce from this visualization?  
 
+```{r}
+world_map <- get_stamenmap(
+  bbox = c(left = -180, bottom = -57, right = 179, top = 82.1),
+  maptype = "terrain",
+  zoom = 2
+)
+
+ggmap(world_map) + 
+  geom_point(data = Starbucks,
+             aes(x = Longitude, y = Latitude),
+             alpha = 0.3,
+             size = 0.1) +
+  theme_map()
+```
+
+
   2. Construct a new map of Starbucks locations in the Twin Cities metro area (approximately the 5 county metro area).  
+  
+```{r}
+starbucks_mnmetro <- Starbucks %>% 
+   filter(`State/Province` == "MN")
+
+mnmetro_map <- get_stamenmap(
+  bbox = c(left = -93.55, bottom = 44.84, right = -92.80, top = 45.14),
+  maptype = "terrain",
+  zoom = 11
+)
+
+ggmap(mnmetro_map) + 
+  geom_point(data = starbucks_mnmetro,
+             aes(x = Longitude, y = Latitude),
+             alpha = 0.3,
+             size = 1,
+             color = "red") +
+  theme_map()
+```
+  
 
   3. In the Twin Cities plot, play with the zoom number. What does it do?  (just describe what it does - don't actually include more than one map).  
+  
+```{r}
+mnmetro_map <- get_stamenmap(
+  bbox = c(left = -93.55, bottom = 44.84, right = -92.80, top = 45.14),
+  maptype = "terrain",
+  zoom = 9
+)
+
+ggmap(mnmetro_map) + 
+  geom_point(data = starbucks_mnmetro,
+             aes(x = Longitude, y = Latitude),
+             alpha = 0.3,
+             size = 1,
+             color = "red") +
+  theme_map()
+```
+
+\
+
+The plot zooms in closer to the map and loses detail.
+  
 
   4. Try a couple different map types (see `get_stamenmap()` in help and look at `maptype`). Include a map with one of the other map types.  
+  
+```{r}
+mnmetro_map <- get_stamenmap(
+  bbox = c(left = -93.55, bottom = 44.84, right = -92.80, top = 45.14),
+  maptype = "toner",
+  zoom = 11
+)
+
+ggmap(mnmetro_map) + 
+  geom_point(data = starbucks_mnmetro,
+             aes(x = Longitude, y = Latitude),
+             alpha = 0.5,
+             size = 1,
+             color = "red") +
+  theme_map()
+```
+  
 
   5. Add a point to the map that indicates Macalester College and label it appropriately. There are many ways you can do think, but I think it's easiest with the `annotate()` function (see `ggplot2` cheatsheet).
+  
+```{r}
+ggmap(mnmetro_map) + 
+  geom_point(data = starbucks_mnmetro,
+             aes(x = Longitude, y = Latitude),
+             alpha = 0.5,
+             size = 1,
+             color = "red") +
+  theme_map() +
+  annotate("text", x = -93.17, y = 44.93, color = "blue", label = "Macalester College") +
+  annotate("point", x = -93.17, y = 44.94, color = "blue")
+```
+
 
 ### Choropleth maps with Starbucks data (`geom_map()`)
 
