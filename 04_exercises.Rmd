@@ -497,8 +497,27 @@ leaflet(mpls_all) %>%
   
   18. Use `leaflet` to create a map of your own choosing. Come up with a question you want to try to answer and use the map to help answer that question. Describe what your map shows. 
   
-  
-  
+```{r}
+pal4 <- colorNumeric("viridis", 
+                     domain = mpls_all$poverty)
+
+leaflet(mpls_all) %>% 
+  addTiles() %>% 
+  addPolygons(fillColor = ~pal4(poverty),
+              fillOpacity = .7,
+              stroke = FALSE,
+              label = ~paste(str_to_title(BDNAME),
+                             ": ",
+                             round(propsusp, 3))) %>% 
+  addLegend(position = "bottomright",
+            pal = pal4, 
+            values = ~poverty,
+            title = "Frac. Indiv. Below Poverty Line")
+```
+
+\ 
+
+My map shows the fraction of individuals below the poverty line, by neighborhood. Each neighborhood is labeled with its name and the proportion of police stops due to suspicious activity. In neighborhoods with high poverty rates, such as Midtown Phillips, we also see a higher proportion of suspicious stops compared to neighborhoods with low poverty rates such as Como. 
   
 ## GitHub link
 
