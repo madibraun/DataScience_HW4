@@ -12,7 +12,7 @@ output:
 
 
 ```{r setup, include=FALSE}
-#knitr::opts_chunk$set(echo = TRUE, error=TRUE, message=FALSE, warning=FALSE)
+knitr::opts_chunk$set(echo = TRUE, error=TRUE, message=FALSE, warning=FALSE)
 ```
 
 ```{r libraries}
@@ -107,7 +107,8 @@ ggmap(world_map) +
              aes(x = Longitude, y = Latitude),
              alpha = 0.3,
              size = 0.1) +
-  theme_map()
+  theme_map() +
+  labs(title = "Starbucks Locations Worldwide")
 ```
 
 
@@ -129,7 +130,8 @@ ggmap(mnmetro_map) +
              alpha = 0.3,
              size = 1,
              color = "red") +
-  theme_map()
+  theme_map() +
+  labs(title = "Starbucks Locations in Twin Cities Metro Area")
 ```
   
 
@@ -148,7 +150,8 @@ ggmap(mnmetro_map) +
              alpha = 0.3,
              size = 1,
              color = "red") +
-  theme_map()
+  theme_map() +
+  labs(title = "Starbucks in Twin Cities: Zoomed In")
 ```
 
 \
@@ -171,7 +174,8 @@ ggmap(mnmetro_map) +
              alpha = 0.5,
              size = 1,
              color = "red") +
-  theme_map()
+  theme_map() +
+  labs(title = "Starbucks Twin Cities: New Map Type 'Toner'")
 ```
   
 
@@ -186,7 +190,8 @@ ggmap(mnmetro_map) +
              color = "red") +
   theme_map() +
   annotate("text", x = -93.17, y = 44.93, color = "blue", label = "Macalester College") +
-  annotate("point", x = -93.17, y = 44.94, color = "blue")
+  annotate("point", x = -93.17, y = 44.94, color = "blue") +
+  labs(title = "Starbucks in Twin Cities Relative to Macalester College")
 ```
 
 
@@ -231,7 +236,8 @@ starbucks_with_2018_pop_est %>%
                fill = starbucks_per_10000)) +
   scale_fill_viridis_c(option = "magma") +
   expand_limits(x = states_map$long, y = states_map$lat) + 
-  theme_map()
+  theme_map() +
+  labs(title = "USA Starbucks Locations Per 10,000 People", fill = "Starbucks Per 10,000")
 ```
   
 
@@ -266,7 +272,8 @@ leaflet(data = favorites_madi) %>%
   addCircles(lng = ~long,
              lat = ~lat,
              label = ~name, 
-             color = ~pal(intop3)) %>% 
+             color = ~pal(intop3),
+             radius = 10) %>% 
   addPolylines(lng = ~long, 
                lat = ~lat, 
                color = col2hex("grey")) %>% 
@@ -321,7 +328,8 @@ ggmap(dc_map) +
              y = lat,
              color = numdepart)) +
   scale_color_viridis_c(option = "viridis") +
-  labs(x = "Longitude", y = "Latitude", color = "# of Departures")
+  labs(x = "Longitude", y = "Latitude", color = "# of Departures",
+       title = "Departures from D.C. Bike Stations")
 ```
   
   10. Only 14.4% of the trips in our data are carried out by casual users. Create a plot that shows which area(s) have stations with a much higher percentage of departures by casual users. What patterns do you notice? Also plot this on top of a map. I think it will be more clear what the patterns are.
@@ -341,7 +349,8 @@ ggmap(dc_map) +
              y = lat,
              color = perccasual)) +
   scale_color_viridis_c(option = "viridis") +
-  labs(x = "Longitude", y = "Latitude", color = "Percent Casual Users")
+  labs(x = "Longitude", y = "Latitude", color = "Percent Casual Users",
+       title = "Percent Casual User Departures from D.C. Bike Stations")
 ```
   
   
@@ -367,7 +376,8 @@ covid19 %>%
                fill = cases)) +
   scale_fill_viridis_c(option = "magma") +
   expand_limits(x = states_map$long, y = states_map$lat) + 
-  theme_map()
+  theme_map() +
+  labs(title = "Number of U.S. Covid-19 Cases by State", fill = "Cases")
 ```
 
  \
@@ -392,7 +402,9 @@ ggplot(data = covid19_with_2018_pop_est) +
                fill = cases_per_10000)) +
   scale_fill_viridis_c(option = "magma") +
   expand_limits(x = states_map$long, y = states_map$lat) + 
-  theme_map()
+  theme_map() +
+  labs(title = "Number of U.S. Covid-19 Cases per 10,000 People by State",
+       fill = "Cases per 10,000")
 ```
   
   
@@ -415,7 +427,9 @@ covid19_4dates %>%
   scale_fill_viridis_c(option = "magma") +
   expand_limits(x = states_map$long, y = states_map$lat) + 
   theme_map() +
-  facet_wrap(~date)
+  facet_wrap(~date) +
+  labs(title = "U.S. Covid-19 Cases per 10,000 People by State, Over Time",
+       fill = "Cases per 10,000")
 ```
 
 \
@@ -517,7 +531,8 @@ leaflet(mpls_all) %>%
 
 \ 
 
-My map shows the fraction of individuals below the poverty line, by neighborhood. Each neighborhood is labeled with its name and the proportion of police stops due to suspicious activity. In neighborhoods with high poverty rates, such as Midtown Phillips, we also see a higher proportion of suspicious stops compared to neighborhoods with low poverty rates such as Como. 
+My map shows the fraction of individuals below the poverty line, by neighborhood. Each neighborhood is labeled with its name and the proportion of police stops due to suspicious activity. In neighborhoods with high poverty rates, such as Midtown Phillips, we see a higher proportion of suspicious stops compared to neighborhoods with low poverty rates such as Como.
+
   
 ## GitHub link
 
