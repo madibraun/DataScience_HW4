@@ -418,6 +418,9 @@ covid19_4dates %>%
   facet_wrap(~date)
 ```
 
+\
+
+Some of the states with no data toward the "beginning" of the pandemic in the U.S. now have the highest number of cases per 10,000 people. 
   
 ## Minneapolis police stops
 
