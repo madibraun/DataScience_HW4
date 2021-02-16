@@ -214,15 +214,15 @@ starbucks_with_2018_pop_est <-
 
   6. **`dplyr` review**: Look through the code above and describe what each line of code does.
   
-  Line    What it does
-  --------    ------------------------
-  198     Reads in .csv file 
-  199     Separates state and period preceding state name
-  200     Removes "dot" column
-  201     Makes all state names lowercase
-  203     Defines new variable to hold information from joined datasets
-  205 & 206   Joins datasets together by "state" by renaming "state" column to "state_name"
-  207     Calculates values for new variable "starbucks_per_10000"
+  Line        What it does
+  ----        ------------
+  198           Reads in .csv file 
+  199           Separates state and period preceding state name
+  200           Removes "dot" column
+  201           Makes all state names lowercase
+  203           Defines new variable to hold information from joined datasets
+  205 & 206           Joins datasets together by "state" by renaming "state" column to "state_name"
+  207           Calculates values for new variable "starbucks_per_10000"
 
   7. Create a choropleth map that shows the number of Starbucks per 10,000 people on a map of the US. Use a new fill color, add points for all Starbucks in the US (except Hawaii and Alaska), add an informative title for the plot, and include a caption that says who created the plot (you!). Make a conclusion about what you observe.
   
@@ -538,5 +538,6 @@ My map shows the fraction of individuals below the poverty line, by neighborhood
 
   19. Below, provide a link to your GitHub page with this set of Weekly Exercises. Specifically, if the name of the file is 04_exercises.Rmd, provide a link to the 04_exercises.md file, which is the one that will be most readable on GitHub.
 
+https://github.com/madibraun/DataScience_HW4/blob/main/04_exercises.md
 
 **DID YOU REMEMBER TO UNCOMMENT THE OPTIONS AT THE TOP?**
