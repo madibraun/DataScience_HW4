@@ -247,6 +247,37 @@ starbucks_with_2018_pop_est %>%
   
   * If there are other variables you want to add that could enhance your plot, do that now.  
   
+```{r}
+favorites_madi <- tibble(
+  name = c("Bayfield, WI", "Hometown", "3M", "The Naughty Greek", "Macalester College", "Current Home", "Mac-Groveland Ice Rink", "Minnehaha Falls", "PetSmart"),
+  long = c(-90.8182, -91.4985, -92.995743, -93.1655, -93.1691, -93.167, -93.1861, -93.211, -93.175),
+  lat = c(46.8108, 44.8113, 44.9469, 44.950748, 44.9379, 44.932, 44.934780, 44.9153, 45.0165),
+  intop3 = c("Yes", "No", "No", "Yes", "No", "No", "No", "Yes", "No")
+)
+```
+
+
+```{r}
+pal <- colorFactor(c("red", "green"), 
+                   domain = favorites_madi$intop3)
+
+leaflet(data = favorites_madi) %>% 
+  addTiles() %>% 
+  addCircles(lng = ~long,
+             lat = ~lat,
+             label = ~name, 
+             color = ~pal(intop3)) %>% 
+  addPolylines(lng = ~long, 
+               lat = ~lat, 
+               color = col2hex("grey")) %>% 
+  addLegend(pal = pal,
+            values = ~intop3,
+            opacity = 0.5,
+            title = "In top 3 places?",
+            position = "bottomright")
+```
+
+  
 ## Revisiting old datasets
 
 This section will revisit some datasets we have used previously and bring in a mapping component. 
